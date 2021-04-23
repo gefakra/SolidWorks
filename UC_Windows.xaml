@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Save_File_As.UC_Windows"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Save_File_As"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="600">
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="55"/>           
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="LightGray" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="64"/>
+                <ColumnDefinition Width="76"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock  Text="{Binding Adress}" FontSize="12" TextAlignment="Left" TextWrapping="Wrap" Background="White" Grid.Column="0" Margin="20 0 6 0" Height="35" Foreground="Black" />
+            <Button Background="White" Content="Обзор" Width="60" Height="40" Grid.Column="1" Command="{Binding OpenCommand}" />
+            <Button Background="White" Content="Cохранить" Width="68" Height="40" Grid.Column="2" HorizontalAlignment="Center" Command="{Binding StartConvertCommand}" />
+
+
+        </Grid>       
+        <Grid Grid.Row="1" Background="red"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="37" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Background="Red" >
+                <TextBlock Text="ПРОГРЕСС" FontWeight="SemiBold"  FontSize="16"  Width="100"  Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 0" FontFamily="Times New Roman"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <ListBox  x:Name="ProgresList"  ItemsSource="{Binding Progress ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="15 0 15 15"  >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch"  VerticalAlignment="Center"  >
+                                <TextBlock Text="{Binding status , Mode=TwoWay}" />
+                                <TextBlock Text="{Binding text , Mode=TwoWay}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>
